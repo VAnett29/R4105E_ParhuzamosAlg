@@ -1,0 +1,11 @@
+Thread;Milliseconds;Numbers found
+Thread 1;0,0.078000;75
+Thread 2;1,0.027000;75
+Thread 3 ;2,0.026000;73
+Thread 4;3,0.024000;69
+Thread 5;4,0.020000;63
+Thread 6;5,0.020000;55
+Thread 7;6,0.016000;45
+Thread 8;7,0.011000;36
+Thread 9 ;8,0.008000;28
+Thread 10;9,0.160000;21

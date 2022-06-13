@@ -5,12 +5,10 @@
 
 #define MAXNUMBER 10000
 
-int result;
-
-int sum_of_digit(int number);
-
 int main (int argc, char **argv)
 {
+    int result = 0;
+
     // szám bekérése
     printf("Enter a number: ");
     int number;
@@ -36,7 +34,7 @@ int main (int argc, char **argv)
             result += 1;
             omp_unset_lock(&lock);
 
-            printf("[%d/%d] Found number %d with sum of digits %d\n", omp_get_thread_num(), omp_get_num_threads(), i, sod);
+            printf("[Thread %d / %d] Found number %d\n", omp_get_thread_num(), omp_get_num_threads(), i);
         }
     }
     // eredmény kiírása
@@ -45,16 +43,4 @@ int main (int argc, char **argv)
     omp_destroy_lock(&lock);
 
     return EXIT_SUCCESS;
-}
-
-//számjegyek összegének kiszámítása
-int sum_of_digit(int number)
-{
-    int sumOfDigits = 0;
-    while (number != 0) //ha a szám elfogyott kilépés
-    {
-        sumOfDigits += number % 10; //legkisebb helyiérték hozzáadása
-        number /= 10; //legkisebb helyiérték eltüntetése
-    }
-    return sumOfDigits;
 }
