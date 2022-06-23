@@ -17,33 +17,37 @@ namespace ParhuzamosCSharp
                 Console.WriteLine("Enter a number: ");
             } while (!int.TryParse(Console.ReadLine(), out number));
 
-            // számjegyek összegének kiszámítása
-            int sumOfDigits = Run.SumOfDigits(number);
-
-            List<Run> runs = new List<Run>();
-
-            int maxThreadCount = Environment.ProcessorCount;
-            for (int i = 1; i <= maxThreadCount; i*=2)
+            for (int i = 1000; i <= 10000; i+= 1000)
             {
-                Run r = new Run(maxNumber: 10000, threadCount: i, sumOfDigits: sumOfDigits);
-                r.Start();
-                runs.Add(r);
-            }
+                Console.WriteLine($"--- 0-{i}");
+                // számjegyek összegének kiszámítása
+                int sumOfDigits = Run.SumOfDigits(number);
 
-            WriteCSV(maxThreadCount, runs);
+                List<Run> runs = new List<Run>();
 
-            foreach (var run in runs)
-            {
-                run.PrintResults();
+                int maxThreadCount = Environment.ProcessorCount;
+                for (int j = 1; j <= maxThreadCount; j *= 2)
+                {
+                    Run r = new Run(maxNumber: i, threadCount: j, sumOfDigits: sumOfDigits);
+                    r.Start();
+                    runs.Add(r);
+                }
+
+                WriteCSV(i, maxThreadCount, runs);
+
+                foreach (var run in runs)
+                {
+                    run.PrintResults();
+                }
             }
 
             Console.ReadLine();
         }
 
-        private static void WriteCSV(int maxThreadCount, List<Run> runs)
+        private static void WriteCSV(int maxNumber , int maxThreadCount, List<Run> runs)
         {
             //eredmények kiírása
-            using (StreamWriter sw = new StreamWriter($"cs_threads.csv"))
+            using (StreamWriter sw = new StreamWriter($"cs_threads_{maxNumber}.csv"))
             {
                 //fejléc elkészítése
                 string line = "Thread";

@@ -1,0 +1,14 @@
+Thread,Milliseconds,Numbers found,Milliseconds,Numbers found,Milliseconds,Numbers found,Milliseconds,Numbers found
+Thread 0,54.1452,355,44.6154,193,59.9216,91,24.9749,47
+Thread 1,45.8104,162,28.1973,102,15.8446,44
+Thread 2,43.5700,92,41.2336,54
+Thread 3,19.7535,70,16.3565,48
+Thread 4,28.2518,39
+Thread 5,13.6126,53
+Thread 6,28.3399,43
+Thread 7,43.2983,27
+Thread 8
+Thread 9
+Thread 10
+Thread 11
+Total,63.2968,355,66.3862,355,98.104,355,88.7472,355
